@@ -3,22 +3,22 @@ var tableNumber = null;
 AFRAME.registerComponent("markerhandler", {
   init: async function () {
     
-    //Get Table Number
+    //Obtener el número de mesa
     if (tableNumber === null) {
       this.askTableNumber();
     }
 
-    //Get the dishes collection
+    //Obtener la colección de platillos
     var dishes = await this.getDishes();
 
-    //makerFound Event
+    //Evento makerFound
     this.el.addEventListener("markerFound", () => {
       if (tableNumber !== null) {
         var markerId = this.el.id;
         this.handleMarkerFound(dishes, markerId);
       }
     });
-    //markerLost Event
+    //Evento markerLost
     this.el.addEventListener("markerLost", () => {
       this.handleMarkerLost();
     });
@@ -43,11 +43,11 @@ AFRAME.registerComponent("markerhandler", {
   },
 
   handleMarkerFound: function (dishes, markerId) {
-    // Getting today's day
+    // Obtener el día
     var todaysDate = new Date();
     var todaysDay = todaysDate.getDay();
 
-    // sunday - saturday : 0 - 6
+    // De domingo a sábado: 0 - 6
     var days = [
       "sunday",
       "monday",
@@ -58,26 +58,26 @@ AFRAME.registerComponent("markerhandler", {
       "saturday"
     ];
 
-    //Get the dish based on ID
+    //Obtener el platillo según su ID 
     var dish = dishes.filter(dish => dish.id === markerId)[0];
 
-    //Check if the dish is available today
+    //Verificar si el platillo está disponible en hoy
     if (dish.unavailable_days.includes(days[todaysDay])) {
       swal({
         icon: "warning",
         title: dish.dish_name.toUpperCase(),
-        text: "This dish is not available today!!!",
+        text: "¡Este platillo no está disponible hoy!",
         timer: 2500,
         buttons: false
       });
     } else {
-      //Changing Model scale to initial scale
+      //Cambiar el tamaño del modelo a su escala inicial
       var model = document.querySelector(`#model-${dish.id}`);
       model.setAttribute("position", dish.model_geometry.position);
       model.setAttribute("rotation", dish.model_geometry.rotation);
       model.setAttribute("scale", dish.model_geometry.scale);
 
-      //Update UI conent VISIBILITY of AR scene(MODEL , INGREDIENTS & PRICE)      
+      //Actualizar el contenido UI de VISIBILIDAD de la escena AR (MODELO, INGREDIENTES Y PRECIO)      
       model.setAttribute("visible", true);
 
       var ingredientsContainer = document.querySelector(`#main-plane-${dish.id}`);
@@ -86,7 +86,7 @@ AFRAME.registerComponent("markerhandler", {
       var priceplane = document.querySelector(`#price-plane-${dish.id}`);
       priceplane.setAttribute("visible", true)
 
-      //Changing button div visibility
+      //Cambiar la visibilidad del botón div
       var buttonDiv = document.getElementById("button-div");
       buttonDiv.style.display = "flex";
 
@@ -94,12 +94,12 @@ AFRAME.registerComponent("markerhandler", {
       var orderButtton = document.getElementById("order-button");
 
       if (tableNumber != null) {
-        //Handling Click Events
+        //Usar eventos de clic
         ratingButton.addEventListener("click", function () {
           swal({
             icon: "warning",
-            title: "Rate Dish",
-            text: "Work In Progress"
+            title: "Calificar platillo",
+            text: "Procesando calificación"
           });
         });
 
@@ -110,8 +110,8 @@ AFRAME.registerComponent("markerhandler", {
 
           swal({
             icon: "https://i.imgur.com/4NZ6uLY.jpg",
-            title: "Thanks For Order !",
-            text: "Your order will serve soon on your table!",
+            title: "¡Gracias por tu orden!",
+            text: "¡Recibirás tu orden pronto!",
             timer: 2000,
             buttons: false
           });
@@ -120,7 +120,7 @@ AFRAME.registerComponent("markerhandler", {
     }
   },
   handleOrder: function (tNumber, dish) {
-    // Reading current table order details
+    // Leer los detalles de la orden para la mesa actual
     firebase
       .firestore()
       .collection("tables")
@@ -149,7 +149,7 @@ AFRAME.registerComponent("markerhandler", {
 
         details.total_bill += dish.price;
 
-        //Updating db
+        //Actualizar la base de datos
         firebase
           .firestore()
           .collection("tables")
@@ -157,7 +157,7 @@ AFRAME.registerComponent("markerhandler", {
           .update(details);
       });
   },
-  //Function to get the dishes collection from db
+  //Función para obtener la colección de platillos desde la base de datos
   getDishes: async function () {
     return await firebase
       .firestore()
@@ -168,7 +168,7 @@ AFRAME.registerComponent("markerhandler", {
       });
   },
   handleMarkerLost: function () {
-    // Changing button div visibility
+    // Cambiar la visibilidad del botón div
     var buttonDiv = document.getElementById("button-div");
     buttonDiv.style.display = "none";
   }
