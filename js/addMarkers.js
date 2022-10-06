@@ -18,7 +18,7 @@ AFRAME.registerComponent("create-markers", {
       var todaysDay = todaysDate.getDay();
       // Domingo - Sábado : 0 - 6
       var days = [
-        "Domingo",
+      "Domingo",
       "Lunes",
       "Martes",
       "Miércoles",
