@@ -26,12 +26,12 @@ AFRAME.registerComponent("markerhandler", {
   askTableNumber: function () {
     var iconUrl = "https://raw.githubusercontent.com/whitehatjr/menu-card-app/main/hunger.png";
     swal({
-      title: "Welcome to Hunger!!",
+      title: "¡Bienvenido a Hunger!",
       icon: iconUrl,
       content: {
         element: "input",
         attributes: {
-          placeholder: "Type your table number",
+          placeholder: "Escribe el número de tu mesa",
           type: "number",
           min: 1
         }
