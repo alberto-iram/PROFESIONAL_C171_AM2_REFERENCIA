@@ -18,13 +18,13 @@ AFRAME.registerComponent("create-markers", {
       var todaysDay = todaysDate.getDay();
       // Sunday - Saturday : 0 - 6
       var days = [
-        "sunday",
-        "monday",
-        "tuesday",
-        "wednesday",
-        "thursday",
-        "friday",
-        "saturday"
+        "Domingo",
+      "Lunes",
+      "Martes",
+      "Miércoles",
+      "Jueves",
+      "Viernes",
+      "Sábado"
       ];
 
       if (!dish.unavailable_days.includes(days[todaysDay])) {
