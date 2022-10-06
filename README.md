@@ -1,10 +1,10 @@
-# PRO-C171
-Ref Code for PRO-C171
+# PROFESIONAL_C171
+Código de referencia para PROFESIONAL_C171
 
-Application Flow:
-1. Open App using ngrok 
-2. Scan the Dish Marker
-3. Add Table Number
-4. Take order for a particular table number by clicking on "ORDER NOW" button.
+Flujo de la app:
+1. Abre la app usando ngrok.
+2. Escanea el marcador del platillo.
+3. Añade el número de mesa.
+4. Toma la orden para el número de mesa en particular al hacer clic en el botón "ORDENAR".
 
-Note: Reload the App if the pop to enter a table number was closed before entering the table number. 
+Nota: recarga la app si se cerró la alerta para ingresar el número de mesa antes de ingresar el dato.
