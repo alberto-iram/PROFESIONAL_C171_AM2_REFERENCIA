@@ -49,13 +49,13 @@ AFRAME.registerComponent("markerhandler", {
 
     // De domingo a sábado: 0 - 6
     var days = [
-      "sunday",
-      "monday",
-      "tuesday",
-      "wednesday",
-      "thursday",
-      "friday",
-      "saturday"
+      "Domingo",
+      "Lunes",
+      "Martes",
+      "Miércoles",
+      "Jueves",
+      "Viernes",
+      "Sábado"
     ];
 
     //Obtener el platillo según su ID 

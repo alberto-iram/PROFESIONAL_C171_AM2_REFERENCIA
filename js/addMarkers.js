@@ -110,7 +110,7 @@ AFRAME.registerComponent("create-markers", {
           color: "white",
           width: 3,
           align: "center",
-          value: `Only\n $${dish.price}`
+          value: `Por solo\n $${dish.price}`
         });
 
       
