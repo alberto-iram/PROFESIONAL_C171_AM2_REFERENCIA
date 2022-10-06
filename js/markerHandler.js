@@ -130,10 +130,10 @@ AFRAME.registerComponent("markerhandler", {
         var details = doc.data();
 
         if (details["current_orders"][dish.id]) {
-          // Increasing Current Quantity
+          // Incrementar la cantidad actual
           details["current_orders"][dish.id]["quantity"] += 1;
 
-          //Calculating Subtotal of item
+          //Calcular el subtotal de un elemento
           var currentQuantity = details["current_orders"][dish.id]["quantity"];
 
           details["current_orders"][dish.id]["subtotal"] =
